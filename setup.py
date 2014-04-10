@@ -8,11 +8,11 @@ except (IOError, ImportError):
    long_description = open('README.md').read()
 
 setup(name='geograpy',
-      version='0.2.4',
+      version='0.2.5',
       description='Extract countries, regions and cities from a URL or text',
       long_description=long_description,
       url='https://github.com/ushahidi/geograpy',
-      download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.4',
+      download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.5',
       author='Jonathon Morgan',
       author_email='jonathon@ushahidi.com',
       license='MIT',
