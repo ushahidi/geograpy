@@ -1,6 +1,6 @@
 import nltk
 from newspaper import Article
-from geograpy.utils import remove_non_ascii
+from .utils import remove_non_ascii
 
 
 class Extractor(object):

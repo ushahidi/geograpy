@@ -2,7 +2,7 @@ import os
 import csv
 import pycountry
 import sqlite3
-from geograpy.utils import remove_non_ascii, fuzzy_match
+from .utils import remove_non_ascii, fuzzy_match
 from collections import Counter
 
 
@@ -98,7 +98,7 @@ class PlaceContext(object):
             matched_regions = [p for p in self.places if is_region(p, region_names)]
 
             regions += matched_regions
-            self.country_regions[country] = matched_regions
+            self.country_regions[country] = list(set(matched_regions))
 
         self.region_mentions = Counter(regions).most_common()
         self.regions = list(set(regions))
@@ -161,6 +161,6 @@ class PlaceContext(object):
 
         def unused(place_name):
             places = [self.countries, self.cities, self.regions]
-            return all(place_name not in l for l in places)
+            return all(self.correct_country_mispelling(place_name) not in l for l in places)
 
         self.other = [p for p in self.places if unused(p)]

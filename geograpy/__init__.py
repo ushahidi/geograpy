@@ -9,5 +9,6 @@ def get_place_context(url=None, text=None):
     pc.set_countries()
     pc.set_regions()
     pc.set_cities()
+    pc.set_other()
 
     return pc
