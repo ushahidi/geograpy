@@ -8,10 +8,10 @@ except (IOError, ImportError):
    description = open('README.md').read()
 
 setup(name='geograpy',
-      version='0.2.3',
+      version='0.2.4',
       description=description,
       url='https://github.com/ushahidi/geograpy',
-      download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.3',
+      download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.4',
       author='Jonathon Morgan',
       author_email='jonathon@ushahidi.com',
       license='MIT',
