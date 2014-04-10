@@ -5,7 +5,10 @@ import sqlite3
 from .utils import remove_non_ascii, fuzzy_match
 from collections import Counter
 
-
+"""
+Takes a list of place names and works place designation (country, region, etc) 
+and relationships between places (city is inside region is inside country, etc)
+"""
 class PlaceContext(object):
     def __init__(self, place_names, db_file=None):
         db_file = db_file or os.path.dirname(os.path.realpath(__file__)) + "/locs.db"
@@ -41,7 +44,7 @@ class PlaceContext(object):
 
         return False
 
-    
+
     def correct_country_mispelling(self, s):
         cur_dir = os.path.dirname(os.path.realpath(__file__))
         with open(cur_dir+"/data/ISO3166ErrorDictionary.csv", "rb") as info:
