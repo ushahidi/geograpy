@@ -1,8 +1,15 @@
 from setuptools import setup
+import os
+
+try:
+   import pypandoc
+   description = pypandoc.convert('README.md', 'rst')
+except (IOError, ImportError):
+   description = open('README.md').read()
 
 setup(name='geograpy',
       version='0.2.3',
-      description='Extract place names and meta data from text or URLs',
+      description=description,
       url='https://github.com/ushahidi/geograpy',
       download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.3',
       author='Jonathon Morgan',
