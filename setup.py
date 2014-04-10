@@ -10,6 +10,7 @@ setup(name='geograpy',
       license='MIT',
       packages=['geograpy'],
       install_requires=[
+            'numpy',
             'nltk',
             'newspaper',
             'jellyfish',
