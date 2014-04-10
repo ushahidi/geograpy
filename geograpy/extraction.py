@@ -11,8 +11,6 @@ class Extractor(object):
         self.text = text
         self.url = url
         self.places = []
-        self.people = []
-
     
     def set_text(self):
         if not self.text and self.url:
@@ -30,8 +28,5 @@ class Extractor(object):
 
         for ne in nes:
             if len(ne) == 1:
-                if ne.node == 'GPE' and ne[0][1] == 'NNP':
+                if (ne.node == 'GPE' or ne.node == 'PERSON') and ne[0][1] == 'NNP':
                     self.places.append(ne[0][0])
-
-                elif ne.node == 'PERSON':
-                    self.people.append(ne[0][0])

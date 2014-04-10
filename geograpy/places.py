@@ -3,6 +3,7 @@ import csv
 import pycountry
 import sqlite3
 from geograpy.utils import remove_non_ascii, fuzzy_match
+from collections import Counter
 
 
 class PlaceContext(object):
@@ -19,12 +20,12 @@ class PlaceContext(object):
 
         cur.execute("CREATE TABLE cities(geoname_id INTEGER, continent_code TEXT, continent_name TEXT, country_iso_code TEXT, country_name TEXT, subdivision_iso_code TEXT, subdivision_name TEXT, city_name TEXT, metro_code TEXT, time_zone TEXT)")
         cur_dir = os.path.dirname(os.path.realpath(__file__))
-        with open(cur_dir+"/GeoLite2-City-Locations.csv", "rb") as info:
+        with open(cur_dir+"/data/GeoLite2-City-Locations.csv", "rb") as info:
             reader = csv.reader(info)
             for row in reader:
                 cur.execute("INSERT INTO cities VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", row)
 
-            conn.commit()
+            self.conn.commit()
 
 
     def db_has_data(self):
@@ -43,7 +44,7 @@ class PlaceContext(object):
     
     def correct_country_mispelling(self, s):
         cur_dir = os.path.dirname(os.path.realpath(__file__))
-        with open(cur_dir+"/ISO3166ErrorDictionary.csv", "rb") as info:
+        with open(cur_dir+"/data/ISO3166ErrorDictionary.csv", "rb") as info:
             reader = csv.reader(info)
             for row in reader:
                 if s in remove_non_ascii(row[0]):
@@ -152,3 +153,14 @@ class PlaceContext(object):
 
         all_cities = [p for p in self.places if p in self.cities]
         self.city_mentions = Counter(all_cities).most_common()
+
+
+    def set_other(self):
+        if not self.cities:
+            self.set_cities()
+
+        def unused(place_name):
+            places = [self.countries, self.cities, self.regions]
+            return all(place_name not in l for l in places)
+
+        self.other = [p for p in self.places if unused(p)]
