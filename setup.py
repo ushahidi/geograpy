@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(name='geograpy',
-      version='0.1',
+      version='0.2',
       description='Extract place names and meta data from text or URLs',
       url='https://github.com/ushahidi/geograpy',
-      download_url ='https://github.com/ushahidi/geograpy/tarball/0.1',
+      download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.0',
       author='Jonathon Morgan',
       author_email='jonathon@ushahidi.com',
       license='MIT',
