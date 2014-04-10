@@ -3,13 +3,14 @@ import os
 
 try:
    import pypandoc
-   description = pypandoc.convert('README.md', 'rst')
+   long_description = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-   description = open('README.md').read()
+   long_description = open('README.md').read()
 
 setup(name='geograpy',
       version='0.2.4',
-      description=description,
+      description='Extract countries, regions and cities from a URL or text',
+      long_description=long_description,
       url='https://github.com/ushahidi/geograpy',
       download_url ='https://github.com/ushahidi/geograpy/tarball/0.2.4',
       author='Jonathon Morgan',
