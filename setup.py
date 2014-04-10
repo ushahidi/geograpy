@@ -17,6 +17,7 @@ setup(name='geograpy',
             'pycountry'
       ],
       scripts=['geograpy/bin/geograpy-nltk'],
-      data_files=[('./geograpy/data', ['geograpy/data/GeoLite2-City-Locations.csv', 
-            'geograpy/data/ISO3166ErrorDictionary.csv'])],
+      package_data = {
+            'geograpy': ['data/*.csv'],
+      },
       zip_safe=False)
