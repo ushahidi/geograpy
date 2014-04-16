@@ -65,6 +65,17 @@ class PlaceContext(object):
             return False
 
     
+    def country_for_city(self, city_name):
+        cur = self.conn.cursor()
+        cur.execute('SELECT * FROM cities WHERE city_name = "' + city_name + '"')
+        rows = cur.fetchall()
+
+        if len(rows) > 0:
+            return rows[0]
+
+        return None
+
+    
     def get_region_names(self, country_name):
         country_name = self.correct_country_mispelling(country_name)
         obj = pycountry.countries.get(name=country_name)
