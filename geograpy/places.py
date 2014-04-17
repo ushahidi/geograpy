@@ -132,7 +132,6 @@ class PlaceContext(object):
 
     def set_cities(self):
         self.cities = []
-        self.possible_cities = []
         self.country_cities = {}
         self.address_strings = []
 
@@ -154,27 +153,27 @@ class PlaceContext(object):
             
             try:
                 country = pycountry.countries.get(alpha2=row[3])
+                country_name = country.name
             except KeyError, e:
-                pass
+                country_name = row[4]
 
             city_name = row[7]
             region_name = row[6]
 
-            if city_name not in self.possible_cities:
-                self.possible_cities.append(city_name)
+            if city_name not in self.cities:
+                self.cities.append(city_name)
 
-            if country and country.name in self.countries:
-                if city_name not in self.cities:
-                    self.cities.append(city_name)
+            if country_name not in self.countries:
+                self.countries.append(country_name)
 
-                if country.name not in self.country_cities:
-                    self.country_cities[country.name] = []
-                
-                if city_name not in self.country_cities[country.name]:
-                    self.country_cities[country.name].append(city_name)
+            if country_name not in self.country_cities:
+                self.country_cities[country.name] = []
+            
+            if city_name not in self.country_cities[country_name]:
+                self.country_cities[country_name].append(city_name)
 
-                    if country.name in self.country_regions and region_name in self.country_regions[country.name]:
-                        self.address_strings.append(city_name + ", " + region_name + ", " + country.name)
+                if country_name in self.country_regions and region_name in self.country_regions[country_name]:
+                    self.address_strings.append(city_name + ", " + region_name + ", " + country_name)
 
 
         all_cities = [p for p in self.places if p in self.cities]
