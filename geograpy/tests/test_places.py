@@ -12,4 +12,5 @@ def test():
     assert len(pc.other) == 1
     assert 'Ngong' in pc.other
 
-    assert pc.country_for_city('Nairobi')[4] == 'Kenya'
+    assert pc.cities_for_name('Nairobi')[0][4] == 'Kenya'
+    assert pc.regions_for_name('Ohio')[0][4] == 'United States'

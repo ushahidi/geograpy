@@ -65,15 +65,27 @@ class PlaceContext(object):
             return False
 
     
-    def country_for_city(self, city_name):
+    
+    def places_by_name(self, place_name, column_name):
+        if not self.db_has_data():
+            self.populate_db()
+
         cur = self.conn.cursor()
-        cur.execute('SELECT * FROM cities WHERE city_name = "' + city_name + '"')
+        cur.execute('SELECT * FROM cities WHERE ' + column_name + ' = "' + place_name + '"')
         rows = cur.fetchall()
 
         if len(rows) > 0:
-            return rows[0]
+            return rows
 
         return None
+
+
+    def cities_for_name(self, city_name):
+        return self.places_by_name(city_name, 'city_name')
+
+
+    def regions_for_name(self, region_name):
+        return self.places_by_name(region_name, 'subdivision_name')
 
     
     def get_region_names(self, country_name):
