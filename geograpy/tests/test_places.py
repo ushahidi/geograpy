@@ -14,3 +14,11 @@ def test():
 
     assert pc.cities_for_name('Nairobi')[0][4] == 'Kenya'
     assert pc.regions_for_name('Ohio')[0][4] == 'United States'
+
+    pc = PlaceContext(['Aleppo', 'Syria'])
+    pc.set_countries()
+    pc.set_regions()
+    pc.set_cities()
+    pc.set_other()
+
+    assert 'Aleppo' in pc.cities

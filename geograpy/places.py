@@ -90,8 +90,11 @@ class PlaceContext(object):
     
     def get_region_names(self, country_name):
         country_name = self.correct_country_mispelling(country_name)
-        obj = pycountry.countries.get(name=country_name)
-        regions = pycountry.subdivisions.get(country_code=obj.alpha2)
+        try:
+            obj = pycountry.countries.get(name=country_name)
+            regions = pycountry.subdivisions.get(country_code=obj.alpha2)
+        except:
+            regions = []
 
         return [r.name for r in regions]
 
@@ -165,6 +168,7 @@ class PlaceContext(object):
 
             if country_name not in self.countries:
                 self.countries.append(country_name)
+                self.country_mentions.append((country_name,1))
 
             if country_name not in self.country_cities:
                 self.country_cities[country.name] = []
