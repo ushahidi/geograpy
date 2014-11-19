@@ -1,3 +1,5 @@
+This fork fixes issues with newer versions of nltk.
+
 Geograpy
 ========
 
