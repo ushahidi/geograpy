@@ -28,5 +28,5 @@ class Extractor(object):
 
         for ne in nes:
             if len(ne) == 1:
-                if (ne.node == 'GPE' or ne.node == 'PERSON') and ne[0][1] == 'NNP':
+                if (ne.label() == 'GPE' or ne.label() == 'PERSON') and ne[0][1] == 'NNP':
                     self.places.append(ne[0][0])
