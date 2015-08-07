@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from geograpy.extraction import Extractor
 
 def test():
@@ -31,3 +33,22 @@ def test():
     assert len(e4.places) > 0
     assert 'Nairobi' in e4.places
     assert 'Ngong' in e4.places
+
+    # unicode
+    text5 = u""" There is a city called New York in the United States."""
+    e5 = Extractor(text=text5)
+    e5.find_entities()
+
+    print e5.places
+    assert len(e5.places) == 2
+    assert u'New York' in e5.places
+    assert u'United States' in e5.places
+
+    # unicode and two words
+    text6 = u""" There is a city called São Paulo in Brazil."""
+    e6 = Extractor(text=text6)
+    e6.find_entities()
+
+    print e6.places
+    assert len(e6.places) > 1
+    assert u'São Paulo' in e6.places

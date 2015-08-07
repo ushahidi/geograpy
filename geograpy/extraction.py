@@ -23,10 +23,10 @@ class Extractor(object):
     def find_entities(self):
         self.set_text()
 
-        text = nltk.word_tokenize(remove_non_ascii(self.text))
+        text = nltk.word_tokenize(self.text)
         nes = nltk.ne_chunk(nltk.pos_tag(text))
 
         for ne in nes:
-            if len(ne) == 1:
-                if (ne.node == 'GPE' or ne.node == 'PERSON') and ne[0][1] == 'NNP':
-                    self.places.append(ne[0][0])
+            if type(ne) is nltk.tree.Tree:
+                if (ne.label() == 'GPE' or ne.label() == 'PERSON' or ne.label() == 'ORGANIZATION'):
+                    self.places.append(u' '.join([i[0] for i in ne.leaves()]))
