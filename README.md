@@ -1,6 +1,9 @@
-This fork fixes issues with newer versions of nltk.
+# This project is no longer being maintained and has been archived. Please check the Forks list for newer versions.
 
-A rewrite that fixes more issues is available here, please use it instead: https://github.com/Corollarium/geograpy2
+## Forks
+We are aware of two 3rd party forks for this library: 
+- [Maintained] https://github.com/somnathrakshit/geograpy3: recently revived, this project will be ensuring maintanance of Geograpy.Thanks to @WolfgangFahl for getting in touch about maintaining this. 
+- [Outdated] This fork fixes issues with newer versions of nltk. A rewrite that fixes more issues is available here, please use it instead: https://github.com/Corollarium/geograpy2
 
 Geograpy
 ========
