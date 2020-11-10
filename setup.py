@@ -22,7 +22,8 @@ setup(name='geograpy',
             'nltk',
             'newspaper',
             'jellyfish',
-            'pycountry'
+            'pycountry',
+            'sqlite'
       ],
       scripts=['geograpy/bin/geograpy-nltk'],
       package_data = {
