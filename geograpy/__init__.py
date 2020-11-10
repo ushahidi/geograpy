@@ -1,5 +1,5 @@
 from extraction import Extractor
-from places import PlaceContext
+from .places import PlaceContext
 
 def get_place_context(url=None, text=None):
     e = Extractor(url=url, text=text)
